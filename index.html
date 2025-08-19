@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .chart-container {
+      max-width: 800px;
+      margin: 0 auto 60px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Data</h1>
+
+  <!-- Gráfico de torta -->
+  <div class="chart-container">
+    <h2>Porcentajes</h2>
+    <canvas id="pieChart"></canvas>
+  </div>
+
+  <!-- Gráfico de barras -->
+  <div class="chart-container">
+    <h2>Estadísticas</h2>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <!-- Gráfico de líneas con eje X (meses) y Y (monto de dinero) -->
+  <div class="chart-container">
+    <h2>Montos por Mes</h2>
+    <canvas id="lineChart"></canvas>
+  </div>
+
+  <script>
+    // Gráfico de torta
+    const pieChart = new Chart(document.getElementById('pieChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Producto A', 'Producto B', 'Producto C'],
+        datasets: [{
+          label: 'Porcentaje',
+          data: [40, 35, 25],
+          backgroundColor: ['#ff6384', '#36a2eb', '#ffce56'],
+        }]
+      }
+    });
+
+    // Gráfico de barras
+    const barChart = new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril'],
+        datasets: [{
+          label: 'Ventas',
+          data: [500, 800, 600, 750],
+          backgroundColor: '#4bc0c0'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // Gráfico de líneas (meses vs montos)
+    const lineChart = new Chart(document.getElementById('lineChart'), {
+      type: 'line',
+      data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+        datasets: [{
+          label: 'Monto ($)',
+          data: [1200, 1500, 1100, 1800, 2000],
+          borderColor: '#ff6384',
+          backgroundColor: 'rgba(255,99,132,0.2)',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: false,
+            title: {
+              display: true,
+              text: 'Montos en Pesos'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Meses'
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
